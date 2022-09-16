@@ -59,38 +59,38 @@ while True:
 
         # Obrigatório a detecção dos olhos, caso não exista, não será possível a captura da foto
         # Laço para percorrer os olhos e desenhar o retângulo nos mesmos
-        #for (ox, oy, ol, oa) in olhosDetectados:
+        for (ox, oy, ol, oa) in olhosDetectados:
             # Desenhando o retângulo envolta do olho
-            #cv2.rectangle(imagem, (ox, oy), (ox + l, oy + a), (0, 255, 0), 2)
+            cv2.rectangle(imagem, (ox, oy), (ox + l, oy + a), (0, 255, 0), 2)
 
             # Tirando a foto / salvando a foto
             # Primeiro comando é para esperar uma tecla e o segundo é um comendo em hexadecimal e logo após a tecla
             # desejada
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+            if cv2.waitKey(1) & 0xFF == ord('q'):
 
-            # Verificando a lumonosidade
+                # Verificando a lumonosidade
 
-            # Tirando a média dos valores RGB
-            #if np.average(imagemCinza) > 110:  # Valor vai de 0 a 255 --> muito pequeno == pouco iluminação
+                # Tirando a média dos valores RGB
+                #if np.average(imagemCinza) > 110:  # Valor vai de 0 a 255 --> muito pequeno == pouco iluminação
 
-            # Código do próprio OpenCV para redimensionar a imagem
-            imagemFace = cv2.resize(imagemCinza[y:y + a, x:x + l], (largura, altura))
+                # Código do próprio OpenCV para redimensionar a imagem
+                imagemFace = cv2.resize(imagemCinza[y:y + a, x:x + l], (largura, altura))
 
-            # Salvando a foto em uma pasta/pessoa.(Indentificador).(NúmeroDaFoto).jpg, imagem redimensionada
-            cv2.imwrite("fotos/" + str(nomeAluno) + "." + str(idPessoa) + "." + str(amostra) + ".jpg", imagemFace)
+                # Salvando a foto em uma pasta/pessoa.(Indentificador).(NúmeroDaFoto).jpg, imagem redimensionada
+                cv2.imwrite("fotos/" + str(nomeAluno) + "." + str(idPessoa) + "." + str(amostra) + ".jpg", imagemFace)
 
-            print("[foto " + str(amostra) + " capturada com sucesso]")
-            # Incrementando o número da foto
-            amostra += 1
+                print("[foto " + str(amostra) + " capturada com sucesso]")
+                # Incrementando o número da foto
+                amostra += 1
 
-    # Mostrando a imagem capturada da webcam
-    cv2.imshow("Face", imagem)  # "Face" é o título da janela que será aberta
+        # Mostrando a imagem capturada da webcam
+        cv2.imshow("Face", imagem)  # "Face" é o título da janela que será aberta
 
-    # causa um delay para dar mais tempo para que a imagem seja processada e copiada para a tela durante a execução
-    cv2.waitKey(1)  # 1 é o tempo dado em milisegundos para processar cada uma das imagens
+        # causa um delay para dar mais tempo para que a imagem seja processada e copiada para a tela durante a execução
+        cv2.waitKey(1)  # 1 é o tempo dado em milisegundos para processar cada uma das imagens
 
-    if amostra >= numeroAmostras + 1:
-        break
+        if amostra >= numeroAmostras + 1:
+            break
 
 print("Fotos capturadas com sucesso!")
 
